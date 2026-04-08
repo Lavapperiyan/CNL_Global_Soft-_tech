@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CNL Global Soft Tech (PVT) LTD - Delivering comprehensive IT solutions and software services across the globe. Endless Service commitment to excellence.">
+    <meta name="keywords"
+        content="software development, web development, mobile app, cloud solutions, IT support, server maintenance, digital marketing, SEO, e-commerce">
+    <meta name="author" content="CNL Global Soft Tech (PVT) LTD">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="CNL Global Soft Tech | Professional Software Solutions">
+    <meta property="og:description"
+        content="Delivering cutting-edge software solutions, cloud transformations, and IT services worldwide.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#003d82">
+
+    <title>CNL Global Soft Tech (PVT) LTD | Software & IT Solutions</title>
+
+    <!-- Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom Modern Tech Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <img src="assets/CNL_Global_Soft_Tech_logo.png" alt="CNL Global Soft Tech Logo">
+            </div>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="services.html" role="menuitem">Services</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+                <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
+                <li role="none"><a href="offers.html" role="menuitem" style="color: var(--primary-cyan); font-weight: 600;">Offers <i class="fas fa-tags"></i></a></li>
+                <li class="lang-selector" role="none">
+                    <select id="languageSelect" class="lang-dropdown" aria-label="Language selection">
+                        <option value="en">English</option>
+                        <option value="ta">Tamil</option>
+                        <option value="si">Sinhala</option>
+                    </select>
+                </li>
+                <li role="none"><a href="#" onclick="openLoginModal(event)" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;" role="menuitem">Client Login</a></li>
+                <li role="none"><a href="contact.html" class="btn btn-primary cta-btn-nav" role="menuitem">Get In Touch</a>
+                </li>
+            </ul>
+            <button class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div style="height: 100px;"></div>
+<!-- About Section -->
+    <section class="section" style="text-align: center;">
+        <div class="container">
+            <div class="section-badge">About Us</div>
+            <h2>CNL Global Soft Tech (PVT) LTD</h2>
+            <p style="font-size: 1.1rem; max-width: 800px; margin: 1.5rem auto;">
+                Established as a leading technology solutions provider, we specialize in delivering comprehensive
+                software development,
+                cloud infrastructure, and digital transformation services. Our commitment to excellence ensures every
+                project exceeds expectations.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-advanced" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Brand -->
+                <div class="footer-col brand-col">
+                    <div class="footer-logo">
+                        <img src="assets/CNL_Global_Soft_Tech_logo.png" alt="Logo">
+                        <span>CNL Global Soft Tech</span>
+                    </div>
+                    <p>Innovating the future with technology. We provide premium IT solutions for businesses worldwide.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/profile.php?id=61573324737871" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/p/DWwhb5IGB-v/?igsh=MXVxdHM4Nnl2NmFjeQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/94701505427" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Explore -->
+                <div class="footer-col">
+                    <h4>EXPLORE</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Services -->
+                <div class="footer-col">
+                    <h4>OUR SERVICES</h4>
+                    <ul>
+                        <li><a href="#">Software Development</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Mobile App Development</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact -->
+                <div class="footer-col contact-info-col">
+                    <h4>CONTACT US</h4>
+                    <ul>
+                        <li><i class="far fa-envelope"></i> <span>cnlglobalsofttech@gmail.com</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span>+94 701 505 427</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Sri Lanka.</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 CNL Global Soft Tech. All rights reserved.</p>
+                </div>
+                <div class="legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/94701505427" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Chairman Profile Modal -->
+    <div id="chairmanModal" class="modal">
+        <div class="modal-content profile-modal">
+            <span class="close-modal" onclick="closeChairmanModal()">&times;</span>
+            <div class="modal-flex">
+                <div class="profile-img-container">
+                    <img src="assets/ceo_new.jpg.jpeg" alt="C.Lavapperiyan">
+                </div>
+                <div class="profile-details">
+                    <h2>C.Lavapperiyan</h2>
+                    <ul class="detail-list">
+                        <li><strong>Role</strong> <span>Founder & CEO</span></li>
+                        <li><strong>Company</strong> <span>CNL Global Soft Tech (PVT) LTD</span></li>
+                        <li><strong>Experience</strong> <span>Expert in Software Solutions</span></li>
+                        <li><strong>Vision</strong> <span>Driving digital transformation globally</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customer Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content login-modal auth-card">
+            <span class="close-modal dark-close" onclick="closeLoginModal()">&times;</span>
+            <div class="login-container">
+                <!-- Logo -->
+                <div class="auth-logo">
+                    <img src="assets/CNL_Global_Soft_Tech_logo.png" alt="Logo">
+                    <div class="auth-logo-text">CNL Global Soft Tech</div>
+                </div>
+                
+                <!-- Toggle Tab -->
+                <div class="auth-tabs">
+                    <div class="auth-tab active" id="tab-signin" onclick="toggleAuth('signin')">Sign In</div>
+                    <div class="auth-tab" id="tab-signup" onclick="toggleAuth('signup')">Create Account</div>
+                </div>
+
+                <!-- Google Auth -->
+                <button class="btn-google">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
+                    Continue with Google
+                </button>
+
+                <!-- Divider -->
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+
+                <form id="loginForm" class="tech-form light-form">
+                    <div class="form-group icon-input">
+                        <label for="loginEmail">EMAIL</label>
+                        <div class="input-wrapper">
+                            <i class="far fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="name@company.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group icon-input">
+                        <label for="loginPassword">PASSWORD</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox"> Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full auth-submit">
+                        Sign In <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                    </button>
+                </form>
+
+                <form id="signupForm" class="tech-form light-form" style="display: none;">
+                    <div class="form-group icon-input">
+                        <label for="signupName">FULL NAME</label>
+                        <div class="input-wrapper">
+                            <i class="far fa-user"></i>
+                            <input type="text" id="signupName" placeholder="John Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group icon-input">
+                        <label for="signupEmail">EMAIL</label>
+                        <div class="input-wrapper">
+                            <i class="far fa-envelope"></i>
+                            <input type="email" id="signupEmail" placeholder="name@company.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group icon-input">
+                        <label for="signupPassword">PASSWORD</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signupPassword" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" required> I agree to terms & policy
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full auth-submit">
+                        Create Account <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function openChairmanModal() {
+            document.getElementById('chairmanModal').style.display = 'block';
+        }
+
+        function closeChairmanModal() {
+            document.getElementById('chairmanModal').style.display = 'none';
+        }
+
+        function openLoginModal(e) {
+            e.preventDefault();
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function toggleAuth(type) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const tabSignin = document.getElementById('tab-signin');
+            const tabSignup = document.getElementById('tab-signup');
+            
+            if (type === 'signup') {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                tabSignin.classList.remove('active');
+                tabSignup.classList.add('active');
+            } else {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+                tabSignin.classList.add('active');
+                tabSignup.classList.remove('active');
+            }
+        }
+
+        window.addEventListener('click', function (event) {
+            const chairmanModal = document.getElementById('chairmanModal');
+            const loginModal = document.getElementById('loginModal');
+            if (event.target === chairmanModal) {
+                chairmanModal.style.display = 'none';
+            }
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+                this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+            });
+
+            // Close menu when link is clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 25, 41, 0.99)';
+                navbar.style.boxShadow = 'var(--shadow-sm)';
+            } else {
+                navbar.style.background = 'rgba(10, 25, 41, 0.97)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Skip link functionality
+        const skipLink = document.querySelector('.skip-link');
+        if (skipLink) {
+            skipLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.focus();
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Language selector (placeholder)
+        document.getElementById('languageSelect').addEventListener('change', function (e) {
+            console.log('Language changed to:', e.target.value);
+            // Implement language switching logic here
+        });
+
+        // Add animation on scroll classes dynamically to service cards
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', (index % 3) * 100);
+        });
+
+        document.querySelectorAll('.section-title').forEach(title => {
+            title.setAttribute('data-aos', 'fade-down');
+        });
+
+        document.querySelectorAll('.contact-item').forEach((item, index) => {
+            item.setAttribute('data-aos', 'fade-up');
+            item.setAttribute('data-aos-delay', index * 100);
+        });
+    </script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 50
+        });
+    </script>
+</body>
+
+</html>
+

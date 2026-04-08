@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details | CNL Global Soft Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="dark-theme">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/CNL_Global_Soft_Tech_logo.png" alt="CNL Global Logo" style="height: 45px;">
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="offers.html">Offers</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="service-detail-hero">
+        <div class="container">
+            <div id="mainIncomeBadge" class="main-income-badge" style="display: none; justify-content: center; margin-bottom: 20px;">
+                <i class="fas fa-fire"></i> Best Selling Service
+            </div>
+            <div class="hero-content-wrapper" data-aos="fade-up">
+                <div class="service-icon-large" id="serviceIcon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h1 id="serviceHeading" class="highlight">Service Heading</h1>
+                <p id="serviceShortDesc" class="lead-text">Short description goes here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="service-content-section section-padding">
+        <div class="container">
+            <div class="content-grid-detail">
+                <!-- Left: Detailed Info -->
+                <div class="detail-main-text" data-aos="fade-right">
+                    <!-- Special Offer Banner -->
+                    <div id="specialOfferBanner" class="special-offer-card" style="display: none;">
+                        <div class="offer-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="offer-text" id="specialOfferText">
+                            <!-- Injected here -->
+                        </div>
+                    </div>
+
+                    <h2 class="section-title-alt">Service Overview</h2>
+                    <div id="serviceDetailedDesc" class="text-block">
+                        <!-- Content injected here -->
+                    </div>
+
+                    <h3 class="sub-title">What's Included</h3>
+                    <ul id="serviceInclusions" class="fancy-list">
+                        <!-- List items injected here -->
+                    </ul>
+                </div>
+
+                <!-- Right: Why Us & Contact Card -->
+                <div class="detail-sidebar" data-aos="fade-left">
+                    <div class="sidebar-card why-us-card">
+                        <h3>Why Partner with CNL?</h3>
+                        <ul id="serviceWhyUs" class="check-list">
+                            <!-- Injected here -->
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card contact-detail-card">
+                        <h3>Ready to Start?</h3>
+                        <p>Get a customized quote for your business needs.</p>
+                        <div class="pricing-mini-list" id="sidebarPricing">
+                            <!-- Pricing tiers injected here -->
+                        </div>
+                        <div class="contact-actions">
+                            <a href="tel:0777271735" class="btn btn-primary btn-block">
+                                <i class="fas fa-phone"></i> 0777 271 735
+                            </a>
+                            <a href="tel:0701505427" class="btn btn-outline btn-block" style="margin-top: 10px;">
+                                <i class="fas fa-phone"></i> 0701 505 427
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-advanced">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CNL Global Soft Tech (PVT) LTD. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Dynamic Content Loader Script -->
+    <script>
+        const supabaseUrl = 'https://caiambiptiuuxtdyacmx.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhaWFtYmlwdGl1dXh0ZHlhY214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NjAwMzYsImV4cCI6MjA5MTIzNjAzNn0.V60E1xXqvICAFS8RKP_2DFLWm2SVcZ9WcxmdE1QTDS4';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function loadServiceDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            
+            if (!id) {
+                window.location.href = 'services.html';
+                return;
+            }
+
+            try {
+                // Fetch single service by ID from Supabase
+                const { data, error } = await _supabase
+                    .from('services')
+                    .select('*')
+                    .eq('id', id)
+                    .single();
+
+                if (error || !data) {
+                    console.error('Service not found:', error);
+                    window.location.href = 'services.html';
+                    return;
+                }
+
+                // Update basic info
+                document.title = `${data.title} | CNL Global Soft Tech`;
+                document.getElementById('serviceHeading').innerText = data.heading || data.title;
+                document.getElementById('serviceShortDesc').innerText = data.short_desc;
+                document.getElementById('serviceDetailedDesc').innerHTML = `<p>${data.detailed_desc.replace(/\n/g, '</p><p>')}</p>`;
+                document.getElementById('serviceIcon').innerHTML = `<i class="fas ${data.icon}"></i>`;
+
+                // Update inclusions
+                const inclusionsList = document.getElementById('serviceInclusions');
+                inclusionsList.innerHTML = '';
+                (data.inclusions || []).forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fas fa-check-circle"></i> ${item}`;
+                    inclusionsList.appendChild(li);
+                });
+
+                // Update Why Us
+                const whyUsList = document.getElementById('serviceWhyUs');
+                whyUsList.innerHTML = '';
+                (data.why_us || []).forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<i class="fas fa-arrow-right"></i> ${item}`;
+                    whyUsList.appendChild(li);
+                });
+
+                // Update Special Offer Banner
+                const offerBanner = document.getElementById('specialOfferBanner');
+                const offerText = document.getElementById('specialOfferText');
+                if (data.special_offer) {
+                    offerBanner.style.display = 'flex';
+                    offerText.innerText = data.special_offer;
+                } else {
+                    offerBanner.style.display = 'none';
+                }
+
+                // Update Pricing in Sidebar
+                const pricingDiv = document.getElementById('sidebarPricing');
+                pricingDiv.innerHTML = '';
+                (data.pricing || []).forEach(p => {
+                    const pItem = document.createElement('div');
+                    pItem.className = 'mini-price-row';
+                    pItem.innerHTML = `<span>${p.label}</span> <strong>${p.value}</strong>`;
+                    pricingDiv.appendChild(pItem);
+                });
+
+            } catch (error) {
+                console.error('Error loading service details:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadServiceDetails);
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
+        }
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 800, once: true });</script>
+</body>
+</html>
