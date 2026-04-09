@@ -269,11 +269,12 @@
     <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+    <!-- Auth Logic -->
+    <script src="assets/auth.js"></script>
+
     <!-- Scripts -->
     <script>
-        const supabaseUrl = 'https://caiambiptiuuxtdyacmx.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhaWFtYmlwdGl1dXh0ZHlhY214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NjAwMzYsImV4cCI6MjA5MTIzNjAzNn0.V60E1xXqvICAFS8RKP_2DFLWm2SVcZ9WcxmdE1QTDS4';
-        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        // Use global _supabase from auth.js
 
         async function loadServices() {
             const grid = document.getElementById('servicesGrid');
