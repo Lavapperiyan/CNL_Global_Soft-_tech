@@ -84,7 +84,11 @@ async function syncProfile(user) {
     if (!user) return;
     
     const { email, id, user_metadata } = user;
-    const full_name = user_metadata.full_name || email.split('@')[0];
+    
+    // Google provides 'name', email signup provides 'full_name'
+    const full_name = user_metadata.full_name || user_metadata.name || email.split('@')[0];
+    
+    console.log('Attempting to sync profile for:', email, 'ID:', id);
     
     const { error } = await _supabase
         .from('profiles')
@@ -96,8 +100,7 @@ async function syncProfile(user) {
         }, { onConflict: 'id' });
     
     if (error) {
-        console.error('Profile sync error:', error);
-        // Do not alert user for background sync errors, but log it
+        console.error('Profile sync error details:', error);
     } else {
         console.log('Profile synced successfully for:', email);
     }
