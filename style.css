@@ -19,6 +19,40 @@
     --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Light Mode Overrides */
+.light-mode {
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.9);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border-light: rgba(15, 23, 42, 0.08);
+    --border-glow: rgba(0, 156, 166, 0.2);
+    --shadow-neon: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode body {
+    background-image: linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.light-mode .service-card, 
+.light-mode .auth-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.light-mode .footer-advanced {
+    background: #f1f5f9;
+    border-top: 1px solid var(--border-light);
+}
+
 * {
     margin: 0;
     padding: 0;

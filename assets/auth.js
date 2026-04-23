@@ -127,15 +127,15 @@ async function checkSession() {
     const loggedOutOnly = document.querySelectorAll('.logged-out-only');
     
     if (!session) {
-        if (servicesLink) servicesLink.parentElement.style.display = 'none';
-        if (offersLink) offersLink.parentElement.style.display = 'none';
-        authOnlyCards.forEach(card => card.style.display = 'none');
-        loggedOutOnly.forEach(el => el.style.display = 'block');
+        if (servicesLink && servicesLink.parentElement) servicesLink.parentElement.style.display = 'none';
+        if (offersLink && offersLink.parentElement) offersLink.parentElement.style.display = 'none';
+        if (authOnlyCards) authOnlyCards.forEach(card => card.style.display = 'none');
+        if (loggedOutOnly) loggedOutOnly.forEach(el => el.style.display = 'block');
     } else {
-        if (servicesLink) servicesLink.parentElement.style.display = 'block';
-        if (offersLink) offersLink.parentElement.style.display = 'block';
-        authOnlyCards.forEach(card => card.style.display = 'block');
-        loggedOutOnly.forEach(el => el.style.display = 'none');
+        if (servicesLink && servicesLink.parentElement) servicesLink.parentElement.style.display = 'block';
+        if (offersLink && offersLink.parentElement) offersLink.parentElement.style.display = 'block';
+        if (authOnlyCards) authOnlyCards.forEach(card => card.style.display = 'block');
+        if (loggedOutOnly) loggedOutOnly.forEach(el => el.style.display = 'none');
     }
 
     // Handle Automatic Login Modal if redirected
