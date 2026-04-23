@@ -352,8 +352,33 @@
         </div>
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="#" class="nav-link active">
-                    <i class="fas fa-th-large"></i> Dashboard
+                <a href="#" class="nav-link active" id="navServices">
+                    <i class="fas fa-th-large"></i> Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="navOffers">
+                    <i class="fas fa-tags"></i> Offers
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="navHome">
+                    <i class="fas fa-home"></i> Home Page
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="navAbout">
+                    <i class="fas fa-building"></i> About Us
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="navCustomers">
+                    <i class="fas fa-users"></i> Customers
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="navContact">
+                    <i class="fas fa-address-book"></i> Contact Info
                 </a>
             </li>
             <li class="nav-item">
@@ -362,8 +387,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="fas fa-chart-pie"></i> Analytics
+                <a href="#" class="nav-link" id="navAnalytics">
+                    <i class="fas fa-chart-line"></i> Analytics
                 </a>
             </li>
         </ul>
@@ -385,7 +410,7 @@
         </header>
 
         <!-- Stats -->
-        <div class="stats-grid">
+        <div class="stats-grid" id="servicesStats">
             <div class="stat-card">
                 <h3>Total Services</h3>
                 <div class="value" id="countTotal">0</div>
@@ -400,8 +425,45 @@
             </div>
         </div>
 
-        <!-- Table Card -->
-        <div class="content-card">
+        <div class="stats-grid" id="offersStats" style="display: none;">
+            <div class="stat-card">
+                <h3>Total Offers</h3>
+                <div class="value" id="countTotalOffers">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Active Offers</h3>
+                <div class="value" id="countActiveOffers">0</div>
+            </div>
+        </div>
+
+        <div class="stats-grid" id="analyticsStats" style="display: none;">
+            <div class="stat-card" style="border-left: 4px solid var(--primary-cyan);">
+                <h3>Total Page Views</h3>
+                <div class="value" id="totalPageViews">0</div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid #8b5cf6;">
+                <h3>Real-time Traffic</h3>
+                <div class="value">Live</div>
+            </div>
+            <div class="stat-card">
+                <h3>Last Visit</h3>
+                <div class="value" id="lastVisitTime" style="font-size: 1rem; color: var(--text-dim);">Never</div>
+            </div>
+        </div>
+
+        <div class="stats-grid" id="customersStats" style="display: none;">
+            <div class="stat-card" style="border-left: 4px solid var(--primary-cyan);">
+                <h3>Total Customers</h3>
+                <div class="value" id="totalCustomers">0</div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid #10b981;">
+                <h3>Active Today</h3>
+                <div class="value" id="activeCustomers">0</div>
+            </div>
+        </div>
+
+        <!-- Table Card for Services -->
+        <div class="content-card" id="servicesTableCard">
             <div class="card-header">
                 <div style="font-weight: 600; font-size: 1.1rem;">Active Services</div>
                 <div class="search-box" style="position: relative;">
@@ -423,6 +485,218 @@
                     <!-- Rows injected here -->
                 </tbody>
             </table>
+        </div>
+
+        <!-- Table Card for Offers -->
+        <div class="content-card" id="offersTableCard" style="display: none;">
+            <div class="card-header">
+                <div style="font-weight: 600; font-size: 1.1rem;">Active Offers</div>
+                <div class="search-box" style="position: relative;">
+                    <i class="fas fa-search" style="position: absolute; left: 12px; top: 12px; color: var(--text-dim); font-size: 0.9rem;"></i>
+                    <input type="text" placeholder="Search offers..." id="searchOfferInput" style="background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; padding: 10px 15px 10px 35px; min-width: 250px; outline: none;">
+                </div>
+            </div>
+            <table id="offersTable">
+                <thead>
+                    <tr>
+                        <th>Offer Title</th>
+                        <th>Icon</th>
+                        <th>Tag</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="offersBody">
+                    <!-- Rows injected here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Card for Home Page -->
+        <div class="content-card" id="homeCard" style="display: none; padding: 2rem;">
+            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 2rem;">Edit Home Page Content</div>
+            <form id="homeForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">HERO BADGE</label>
+                        <input type="text" id="home_hero_badge" placeholder="e.g., Welcome to Innovation" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">HERO TITLE (H1)</label>
+                        <input type="text" id="home_hero_title" placeholder="e.g., CNL Global Soft Tech" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                </div>
+                
+                <div class="form-group full-width" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">HERO DESCRIPTION</label>
+                    <textarea id="home_hero_desc" placeholder="Main description text..." required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit; min-height: 100px; resize: vertical;"></textarea>
+                </div>
+
+                <div class="form-group full-width" style="margin-bottom: 2rem;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">HERO SUBTEXT (ICON TEXT)</label>
+                    <input type="text" id="home_hero_subtext" placeholder="e.g., Endless Service" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--primary-cyan); font-size: 1rem;">STATISTICS (3 COLUMNS)</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                    <div style="padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <label style="font-size: 0.7rem; color: var(--text-dim);">STAT 1</label>
+                        <input type="text" id="home_stat1_num" placeholder="Num (e.g. 13+)" required style="width: 100%; padding: 8px; background: transparent; border: none; border-bottom: 1px solid var(--glass-border); color: white; margin-bottom: 5px;">
+                        <input type="text" id="home_stat1_label" placeholder="Label" required style="width: 100%; padding: 8px; background: transparent; border: none; color: var(--text-dim);">
+                    </div>
+                    <div style="padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <label style="font-size: 0.7rem; color: var(--text-dim);">STAT 2</label>
+                        <input type="text" id="home_stat2_num" placeholder="Num (e.g. 100%)" required style="width: 100%; padding: 8px; background: transparent; border: none; border-bottom: 1px solid var(--glass-border); color: white; margin-bottom: 5px;">
+                        <input type="text" id="home_stat2_label" placeholder="Label" required style="width: 100%; padding: 8px; background: transparent; border: none; color: var(--text-dim);">
+                    </div>
+                    <div style="padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 12px; border: 1px solid var(--glass-border);">
+                        <label style="font-size: 0.7rem; color: var(--text-dim);">STAT 3</label>
+                        <input type="text" id="home_stat3_num" placeholder="Num (e.g. 24/7)" required style="width: 100%; padding: 8px; background: transparent; border: none; border-bottom: 1px solid var(--glass-border); color: white; margin-bottom: 5px;">
+                        <input type="text" id="home_stat3_label" placeholder="Label" required style="width: 100%; padding: 8px; background: transparent; border: none; color: var(--text-dim);">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-add" id="saveHomeBtn" style="padding: 12px 24px;">SAVE HOME CONTENT</button>
+            </form>
+        </div>
+
+        <!-- Customers & Promotions Section -->
+        <div class="content-card" id="customersCard" style="display: none; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                    <div style="font-weight: 600; font-size: 1.2rem;">Customer Database</div>
+                    <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 5px;">View and manage users who signed up on your website.</p>
+                </div>
+                <button class="btn-add" id="sendPromotionBtn" style="padding: 10px 20px; background: #8b5cf6;">
+                    <i class="fas fa-paper-plane"></i> Send Promotion
+                </button>
+            </div>
+
+            <div style="margin-bottom: 2rem; display: flex; gap: 1rem;">
+                <input type="text" id="customerSearch" placeholder="Search by email or name..." style="flex: 1; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
+                <button class="btn-add" id="copyEmailsBtn" style="padding: 10px 20px; background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);">
+                    <i class="fas fa-copy"></i> Copy All Emails
+                </button>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align: left; border-bottom: 1px solid var(--glass-border);">
+                        <th style="padding: 12px; color: var(--text-dim);">NAME</th>
+                        <th style="padding: 12px; color: var(--text-dim);">EMAIL</th>
+                        <th style="padding: 12px; color: var(--text-dim);">LAST LOGIN</th>
+                        <th style="padding: 12px; color: var(--text-dim);">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody id="customersBody">
+                    <!-- Dynamic rows -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Card for Contact Info -->
+        <div class="content-card" id="contactInfoCard" style="display: none; padding: 2rem;">
+            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 2rem;">Edit Contact Information</div>
+            <form id="contactInfoForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">PRIMARY PHONE</label>
+                        <input type="text" id="contact_phone_primary" placeholder="e.g., 0701 505427" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">SECONDARY PHONE</label>
+                        <input type="text" id="contact_phone_secondary" placeholder="e.g., 0701 505427" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">EMAIL ADDRESS</label>
+                        <input type="email" id="contact_email" placeholder="e.g., cnlglobalsofttech@gmail.com" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">LOCATION</label>
+                        <input type="text" id="contact_location" placeholder="e.g., Sri Lanka" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                </div>
+
+                <h3 style="margin: 2rem 0 1rem; color: var(--primary-cyan); font-size: 1rem;">SOCIAL MEDIA LINKS</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">FACEBOOK URL</label>
+                        <input type="text" id="contact_facebook" placeholder="https://facebook.com/..." style="width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">INSTAGRAM URL</label>
+                        <input type="text" id="contact_instagram" placeholder="https://instagram.com/..." style="width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                    <div class="form-group full-width">
+                        <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">WHATSAPP URL</label>
+                        <input type="text" id="contact_whatsapp" placeholder="https://wa.me/..." style="width: 100%; padding: 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-add" id="saveContactBtn" style="padding: 12px 24px;">SAVE CONTACT INFO</button>
+            </form>
+
+            <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--glass-border);">
+
+            <!-- Manage Social Links -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="margin: 0; color: var(--primary-cyan); font-size: 1.1rem;">Manage Social Links</h3>
+                <button class="btn-add" onclick="openSocialModal()" style="padding: 8px 16px; font-size: 0.8rem;">
+                    <i class="fas fa-plus"></i> Add New Link
+                </button>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.2); border-radius: 12px; overflow: hidden;">
+                <thead>
+                    <tr style="text-align: left; background: rgba(255,255,255,0.05);">
+                        <th style="padding: 12px;">Platform</th>
+                        <th style="padding: 12px;">Icon</th>
+                        <th style="padding: 12px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="socialLinksBody">
+                    <!-- Dynamic rows -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Analytics Visualization Placeholder -->
+        <div class="content-card" id="analyticsCard" style="display: none; padding: 2rem;">
+            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 2rem;">Website Traffic Overview</div>
+            <div style="height: 300px; display: flex; align-items: flex-end; gap: 20px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 15px; border: 1px solid var(--glass-border);">
+                <!-- Fake Chart Bars for Aesthetic -->
+                <div style="flex: 1; background: var(--primary-cyan); height: 40%; border-radius: 5px 5px 0 0; opacity: 0.5;"></div>
+                <div style="flex: 1; background: var(--primary-cyan); height: 60%; border-radius: 5px 5px 0 0; opacity: 0.6;"></div>
+                <div style="flex: 1; background: var(--primary-cyan); height: 30%; border-radius: 5px 5px 0 0; opacity: 0.4;"></div>
+                <div style="flex: 1; background: var(--primary-cyan); height: 85%; border-radius: 5px 5px 0 0; opacity: 0.8;"></div>
+                <div style="flex: 1; background: var(--primary-cyan); height: 55%; border-radius: 5px 5px 0 0; opacity: 0.5;"></div>
+                <div style="flex: 1; background: var(--primary-cyan); height: 70%; border-radius: 5px 5px 0 0; opacity: 0.7;"></div>
+                <div style="flex: 1; background: var(--primary-cyan); height: 90%; border-radius: 5px 5px 0 0; opacity: 0.9;"></div>
+            </div>
+            <p style="margin-top: 1.5rem; color: var(--text-dim); text-align: center; font-size: 0.9rem;">
+                <i class="fas fa-info-circle"></i> Data is updated every time a user visits the homepage.
+            </p>
+        </div>
+
+        <!-- Card for About Us -->
+        <div class="content-card" id="aboutCard" style="display: none; padding: 2rem;">
+            <div style="font-weight: 600; font-size: 1.2rem; margin-bottom: 2rem;">Edit Company Information</div>
+            <form id="aboutForm">
+                <div class="form-group full-width" style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">COMPANY NAME / TITLE</label>
+                    <input type="text" id="about_title" placeholder="e.g., CNL Global Soft Tech (PVT) LTD" required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit;">
+                </div>
+                
+                <div class="form-group full-width" style="margin-bottom: 2rem;">
+                    <label style="display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">COMPANY DESCRIPTION</label>
+                    <textarea id="about_description" placeholder="Write about your company here (Unlimited text)..." required style="width: 100%; padding: 12px; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border); border-radius: 10px; color: white; font-family: inherit; min-height: 400px; resize: vertical; line-height: 1.6;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-add" id="saveAboutBtn" style="padding: 12px 24px;">SAVE CHANGES</button>
+            </form>
         </div>
     </main>
 
@@ -488,6 +762,116 @@
                         <button type="submit" class="btn-add" id="saveBtn">SAVE SERVICE</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offer Modal -->
+    <div class="modal" id="offerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="offerModalTitle">Create New Offer</h2>
+                <button class="btn-icon" onclick="closeOfferModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="offerForm">
+                    <input type="hidden" id="offerId">
+                    
+                    <div class="form-group full-width">
+                        <label>OFFER TITLE</label>
+                        <input type="text" id="offer_title" placeholder="e.g., Startup Bundle" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>DESCRIPTION</label>
+                        <textarea id="offer_description" placeholder="Perfect for new businesses looking to establish a strong digital presence instantly." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>FONTAWESOME ICON CLASS</label>
+                        <input type="text" id="offer_icon" placeholder="fa-rocket" required>
+                    </div>
+                    <div class="form-group">
+                        <label>TAG (Optional)</label>
+                        <input type="text" id="offer_tag" placeholder="POPULAR">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>FEATURES (Comma separated list)</label>
+                        <input type="text" id="offer_features" placeholder="20% Off Web Dev, Free 1-Year Domain">
+                    </div>
+
+                    <div class="form-group">
+                        <label>IS ACTIVE?</label>
+                        <select id="offer_is_active">
+                            <option value="true">Yes</option>
+                            <option value="false">No (Hidden)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions full-width">
+                        <button type="button" class="btn-cancel" onclick="closeOfferModal()">CANCEL</button>
+                        <button type="submit" class="btn-add" id="saveOfferBtn">SAVE OFFER</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Link Modal -->
+    <div class="modal" id="socialModal">
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="modal-header">
+                <h2 id="socialModalTitle">Add Social Media</h2>
+                <button class="btn-icon" onclick="closeSocialModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="socialForm">
+                    <input type="hidden" id="social_id">
+                    <div class="form-group full-width">
+                        <label>PLATFORM NAME</label>
+                        <input type="text" id="social_platform" placeholder="e.g., LinkedIn" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>FONTAWESOME ICON CLASS</label>
+                        <input type="text" id="social_icon" placeholder="fab fa-linkedin" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>PROFILE URL</label>
+                        <input type="url" id="social_url" placeholder="https://..." required>
+                    </div>
+                    <div class="form-actions full-width">
+                        <button type="button" class="btn-cancel" onclick="closeSocialModal()">CANCEL</button>
+                        <button type="submit" class="btn-add" id="saveSocialBtn">SAVE LINK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Promotion Modal -->
+    <div class="modal" id="promotionModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>Send Promotion / Offer</h2>
+                <button class="btn-icon" onclick="closePromotionModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-dim); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                    This will open your default email app with all customer emails BCC'd so you can send them a promotion privately.
+                </p>
+                <div class="form-group full-width">
+                    <label>PROMOTION SUBJECT</label>
+                    <input type="text" id="promo_subject" placeholder="e.g. 🔥 Special 20% Discount for You!" required>
+                </div>
+                <div class="form-group full-width">
+                    <label>MESSAGE BODY</label>
+                    <textarea id="promo_body" placeholder="Write your offer details here..." style="min-height: 200px;"></textarea>
+                </div>
+                <div class="form-actions full-width">
+                    <button type="button" class="btn-cancel" onclick="closePromotionModal()">CANCEL</button>
+                    <button type="button" class="btn-add" id="launchPromoBtn" style="background: #8b5cf6;">LAUNCH GMAIL / EMAIL APP</button>
+                </div>
             </div>
         </div>
     </div>

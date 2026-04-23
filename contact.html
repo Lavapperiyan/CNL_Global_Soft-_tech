@@ -37,6 +37,10 @@
 
     <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Theme Toggle Script -->
+    <script src="assets/theme.js"></script>
+    <script src="assets/contact-dynamic.js"></script>
 </head>
 
 <body>
@@ -65,6 +69,11 @@
                 <li role="none"><a href="#" onclick="openLoginModal(event)" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;" role="menuitem">Client Login</a></li>
                 <li role="none"><a href="contact.html" class="btn btn-primary cta-btn-nav" role="menuitem">Get In Touch</a>
                 </li>
+                <li role="none" style="display: flex; align-items: center;">
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
             <button class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span></span>
@@ -90,7 +99,7 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="contact-label">Phone</div>
-                        <a href="tel:+94701505427" class="contact-value"
+                        <a href="tel:+94701505427" class="contact-value dynamic-phone-primary"
                             style="text-decoration: none; color: inherit;">0701 505427</a>
                     </div>
                     <div class="contact-item">
@@ -98,7 +107,7 @@
                             <i class="fas fa-mobile-alt"></i>
                         </div>
                         <div class="contact-label">Mobile</div>
-                        <a href="tel:+94701505427" class="contact-value"
+                        <a href="tel:+94701505427" class="contact-value dynamic-phone-secondary"
                             style="text-decoration: none; color: inherit;">0701 505427</a>
                     </div>
                     <div class="contact-item">
@@ -106,12 +115,12 @@
                             <i class="fas fa-globe"></i>
                         </div>
                         <div class="contact-label">Location</div>
-                        <div class="contact-value">Sri Lanka</div>
+                        <div class="contact-value dynamic-location">Sri Lanka</div>
                     </div>
                 </div>
 
                 <div style="margin-top: 3rem;">
-                    <a href="mailto:cnlglobalsofttech@gmail.com" class="btn btn-secondary">Send Email</a>
+                    <a href="mailto:cnlglobalsofttech@gmail.com" class="btn btn-secondary dynamic-email">Send Email</a>
                 </div>
             </div>
         </div>
@@ -129,9 +138,9 @@
                     </div>
                     <p>Innovating the future with technology. We provide premium IT solutions for businesses worldwide.</p>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=61573324737871" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/p/DWwhb5IGB-v/?igsh=MXVxdHM4Nnl2NmFjeQ==" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/94701505427" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="dynamic-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="dynamic-ig" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dynamic-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -143,6 +152,7 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin/login.html" style="color: var(--primary-cyan); font-weight: 500;"><i class="fas fa-user-shield"></i> Admin Portal</a></li>
                     </ul>
                 </div>
 
@@ -161,9 +171,9 @@
                 <div class="footer-col contact-info-col">
                     <h4>CONTACT US</h4>
                     <ul>
-                        <li><i class="far fa-envelope"></i> <span>cnlglobalsofttech@gmail.com</span></li>
-                        <li><i class="fas fa-phone-alt"></i> <span>+94 701 505 427</span></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Sri Lanka.</span></li>
+                        <li><i class="far fa-envelope"></i> <span class="dynamic-email">cnlglobalsofttech@gmail.com</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span class="dynamic-phone-primary">+94 701 505 427</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="dynamic-location">Sri Lanka.</span></li>
                     </ul>
                 </div>
             </div>
@@ -181,30 +191,11 @@
     </footer>
     
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/94701505427" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="#" class="floating-whatsapp dynamic-wa" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Chairman Profile Modal -->
-    <div id="chairmanModal" class="modal">
-        <div class="modal-content profile-modal">
-            <span class="close-modal" onclick="closeChairmanModal()">&times;</span>
-            <div class="modal-flex">
-                <div class="profile-img-container">
-                    <img src="assets/ceo_new.jpg.jpeg" alt="C.Lavapperiyan">
-                </div>
-                <div class="profile-details">
-                    <h2>C.Lavapperiyan</h2>
-                    <ul class="detail-list">
-                        <li><strong>Role</strong> <span>Founder & CEO</span></li>
-                        <li><strong>Company</strong> <span>CNL Global Soft Tech (PVT) LTD</span></li>
-                        <li><strong>Experience</strong> <span>Expert in Software Solutions</span></li>
-                        <li><strong>Vision</strong> <span>Driving digital transformation globally</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Customer Login Modal -->
     <div id="loginModal" class="modal">
@@ -291,20 +282,17 @@
                         Create Account <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
                     </button>
                 </form>
+
+                <!-- Staff Login Link -->
+                <div class="auth-footer" style="margin-top: 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <p style="font-size: 0.85rem; color: #a0aec0;">Are you a team member? <a href="admin/login.html" style="color: var(--primary-cyan); text-decoration: none; font-weight: 600;">Staff Login</a></p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        function openChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'block';
-        }
-
-        function closeChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'none';
-        }
-
         function openLoginModal(e) {
             e.preventDefault();
             document.getElementById('loginModal').style.display = 'block';
@@ -334,11 +322,7 @@
         }
 
         window.addEventListener('click', function (event) {
-            const chairmanModal = document.getElementById('chairmanModal');
             const loginModal = document.getElementById('loginModal');
-            if (event.target === chairmanModal) {
-                chairmanModal.style.display = 'none';
-            }
             if (event.target === loginModal) {
                 loginModal.style.display = 'none';
             }

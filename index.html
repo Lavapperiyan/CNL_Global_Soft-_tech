@@ -37,6 +37,12 @@
 
     <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Theme Toggle Script -->
+    <script src="assets/theme.js"></script>
+    <script src="assets/main.js"></script>
+    <script src="assets/services-dynamic.js"></script>
+    <script src="assets/contact-dynamic.js"></script>
 </head>
 
 <body>
@@ -69,6 +75,11 @@
                 <li role="none"><a href="contact.html" class="btn btn-primary cta-btn-nav" role="menuitem">Get In
                         Touch</a>
                 </li>
+                <li role="none" style="display: flex; align-items: center;">
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
             <button class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span></span>
@@ -81,20 +92,13 @@
     <!-- Hero Section -->
     <header id="home" class="hero" role="banner">
         <div class="hero-bg"></div>
-        <div class="chairman-badge" onclick="openChairmanModal()">
-            <img src="assets/ceo_new.jpg.jpeg" alt="Chairman" class="chairman-img">
-            <div class="chairman-info">
-                <span class="chairman-name">C.Lavapperiyan</span>
-                <span class="chairman-link">Founder & CEO</span>
-            </div>
-        </div>
         <div class="container hero-content" id="main-content">
-            <div class="hero-badge">
+            <div class="hero-badge" id="display_hero_badge">
                 <i class="fas fa-globe"></i> Welcome to Innovation
             </div>
-            <h1>CNL Global Soft Tech</h1>
-            <p>Delivering comprehensive IT solutions and software services with a commitment to excellence</p>
-            <div class="hero-subtext">
+            <h1 id="display_hero_title">CNL Global Soft Tech</h1>
+            <p id="display_hero_desc">Delivering comprehensive IT solutions and software services with a commitment to excellence</p>
+            <div class="hero-subtext" id="display_hero_subtext">
                 <i class="fas fa-infinity"></i> Endless Service
             </div>
             <div class="hero-btns">
@@ -103,16 +107,16 @@
             </div>
             <div class="hero-stats">
                 <div class="stat-item">
-                    <span class="stat-number">13+</span>
-                    <span class="stat-label">Services Offered</span>
+                    <span class="stat-number" id="display_stat1_num">13+</span>
+                    <span class="stat-label" id="display_stat1_label">Services Offered</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Commitment</span>
+                    <span class="stat-number" id="display_stat2_num">100%</span>
+                    <span class="stat-label" id="display_stat2_label">Commitment</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Support</span>
+                    <span class="stat-number" id="display_stat3_num">24/7</span>
+                    <span class="stat-label" id="display_stat3_label">Support</span>
                 </div>
             </div>
         </div>
@@ -140,7 +144,7 @@
                 </a>
 
                 <!-- Services Card -->
-                <a href="services.html" class="service-card" data-aos="fade-up" data-aos-delay="100"
+                <a href="services.html" class="service-card auth-only-card" data-aos="fade-up" data-aos-delay="100"
                     style="text-decoration: none; text-align: center; padding: 2rem; border-top: 2px solid var(--primary-cyan);">
                     <div class="service-icon" style="margin: 0 auto 1.5rem auto;">
                         <i class="fas fa-cogs"></i>
@@ -151,7 +155,7 @@
                 </a>
 
                 <!-- Offers Card -->
-                <a href="offers.html" class="service-card" data-aos="fade-up" data-aos-delay="200"
+                <a href="offers.html" class="service-card auth-only-card" data-aos="fade-up" data-aos-delay="200"
                     style="text-decoration: none; text-align: center; padding: 2rem; border-top: 2px solid var(--primary-cyan);">
                     <div class="service-icon" style="margin: 0 auto 1.5rem auto;">
                         <i class="fas fa-tags"></i>
@@ -172,6 +176,19 @@
                         support and sales team today.</p>
                 </a>
             </div>
+
+            <!-- Login Encouragement Notice -->
+            <div class="logged-out-only" data-aos="zoom-in" style="margin-top: 3rem; text-align: center; background: rgba(0, 243, 255, 0.05); padding: 2.5rem; border-radius: 20px; border: 1px dashed var(--primary-cyan);">
+                <i class="fas fa-unlock-alt" style="font-size: 2.5rem; color: var(--primary-cyan); margin-bottom: 1.2rem; display: block;"></i>
+                <h3 style="color: white; margin-bottom: 0.8rem; font-size: 1.5rem;">Unlock Premium Access!</h3>
+                <p style="color: #a0aec0; max-width: 650px; margin: 0 auto 1.8rem auto; font-size: 1.05rem; line-height: 1.6;">
+                    To view our full range of <span style="color: white; font-weight: 600;">13+ IT Services</span> and claim <span style="color: var(--primary-cyan); font-weight: 600;">Exclusive Client Offers</span>, please sign in to your account.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <button onclick="openLoginModal(event)" class="btn btn-primary" style="padding: 0.9rem 2.5rem;">Login Now</button>
+                    <a href="about.html" class="btn btn-outline" style="padding: 0.9rem 2.5rem;">Learn More About Us</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -188,11 +205,9 @@
                     <p>Innovating the future with technology. We provide premium IT solutions for businesses worldwide.
                     </p>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=61573324737871" target="_blank"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/p/DWwhb5IGB-v/?igsh=MXVxdHM4Nnl2NmFjeQ==" target="_blank"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/94701505427" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="dynamic-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="dynamic-ig" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dynamic-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -204,6 +219,7 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin/login.html" style="color: var(--primary-cyan); font-weight: 500;"><i class="fas fa-user-shield"></i> Admin Portal</a></li>
                     </ul>
                 </div>
 
@@ -222,9 +238,9 @@
                 <div class="footer-col contact-info-col">
                     <h4>CONTACT US</h4>
                     <ul>
-                        <li><i class="far fa-envelope"></i> <span>cnlglobalsofttech@gmail.com</span></li>
-                        <li><i class="fas fa-phone-alt"></i> <span>+94 701 505 427</span></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Sri Lanka.</span></li>
+                        <li><i class="far fa-envelope"></i> <span class="dynamic-email">cnlglobalsofttech@gmail.com</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span class="dynamic-phone-primary">+94 701 505 427</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="dynamic-location">Sri Lanka.</span></li>
                     </ul>
                 </div>
             </div>
@@ -242,30 +258,11 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/94701505427" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="#" class="floating-whatsapp dynamic-wa" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Chairman Profile Modal -->
-    <div id="chairmanModal" class="modal">
-        <div class="modal-content profile-modal">
-            <span class="close-modal" onclick="closeChairmanModal()">&times;</span>
-            <div class="modal-flex">
-                <div class="profile-img-container">
-                    <img src="assets/ceo_new.jpg.jpeg" alt="C.Lavapperiyan">
-                </div>
-                <div class="profile-details">
-                    <h2>C.Lavapperiyan</h2>
-                    <ul class="detail-list">
-                        <li><strong>Role</strong> <span>Founder & CEO</span></li>
-                        <li><strong>Company</strong> <span>CNL Global Soft Tech (PVT) LTD</span></li>
-                        <li><strong>Experience</strong> <span>Expert in Software Solutions</span></li>
-                        <li><strong>Vision</strong> <span>Driving digital transformation globally</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Customer Login Modal -->
     <div id="loginModal" class="modal">
@@ -352,20 +349,17 @@
                         Create Account <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
                     </button>
                 </form>
+
+                <!-- Staff Login Link -->
+                <div class="auth-footer" style="margin-top: 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <p style="font-size: 0.85rem; color: #a0aec0;">Are you a team member? <a href="admin/login.html" style="color: var(--primary-cyan); text-decoration: none; font-weight: 600;">Staff Login</a></p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        function openChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'block';
-        }
-
-        function closeChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'none';
-        }
-
         function openLoginModal(e) {
             e.preventDefault();
             document.getElementById('loginModal').style.display = 'block';
@@ -395,11 +389,7 @@
         }
 
         window.addEventListener('click', function (event) {
-            const chairmanModal = document.getElementById('chairmanModal');
             const loginModal = document.getElementById('loginModal');
-            if (event.target === chairmanModal) {
-                chairmanModal.style.display = 'none';
-            }
             if (event.target === loginModal) {
                 loginModal.style.display = 'none';
             }
@@ -498,6 +488,54 @@
             once: true,
             offset: 50
         });
+    </script>
+    <!-- Home Page Dynamic Logic -->
+    <script>
+        async function fetchHomeContent() {
+            // Re-using Supabase init if not defined globally
+            const supabaseUrl = 'https://caiambiptiuuxtdyacmx.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhaWFtYmlwdGl1dXh0ZHlhY214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NjAwMzYsImV4cCI6MjA5MTIzNjAzNn0.V60E1xXqvICAFS8RKP_2DFLWm2SVcZ9WcxmdE1QTDS4';
+            const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+            // Increment Views (Analytics)
+            try {
+                await _supabase.rpc('increment_views', { row_id: 'main_site' });
+            } catch (err) {
+                console.error('Analytics error:', err);
+            }
+
+            try {
+                const { data, error } = await _supabase
+                    .from('home_content')
+                    .select('*')
+                    .eq('id', 1)
+                    .single();
+
+                if (error) throw error;
+
+                if (data) {
+                    const badge = document.getElementById('display_hero_badge');
+                    const title = document.getElementById('display_hero_title');
+                    const desc = document.getElementById('display_hero_desc');
+                    const subtext = document.getElementById('display_hero_subtext');
+                    
+                    if (badge) badge.innerHTML = `<i class="fas fa-globe"></i> ${data.hero_badge}`;
+                    if (title) title.textContent = data.hero_title;
+                    if (desc) desc.textContent = data.hero_desc;
+                    if (subtext) subtext.innerHTML = `<i class="fas fa-infinity"></i> ${data.hero_subtext}`;
+                    
+                    if (document.getElementById('display_stat1_num')) document.getElementById('display_stat1_num').textContent = data.stat1_num;
+                    if (document.getElementById('display_stat1_label')) document.getElementById('display_stat1_label').textContent = data.stat1_label;
+                    if (document.getElementById('display_stat2_num')) document.getElementById('display_stat2_num').textContent = data.stat2_num;
+                    if (document.getElementById('display_stat2_label')) document.getElementById('display_stat2_label').textContent = data.stat2_label;
+                    if (document.getElementById('display_stat3_num')) document.getElementById('display_stat3_num').textContent = data.stat3_num;
+                    if (document.getElementById('display_stat3_label')) document.getElementById('display_stat3_label').textContent = data.stat3_label;
+                }
+            } catch (err) {
+                console.error('Home content fetch error:', err);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', fetchHomeContent);
     </script>
 </body>
 

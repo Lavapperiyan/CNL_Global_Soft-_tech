@@ -37,6 +37,10 @@
 
     <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Theme Toggle Script -->
+    <script src="assets/theme.js"></script>
+    <script src="assets/contact-dynamic.js"></script>
 </head>
 
 <body>
@@ -65,6 +69,11 @@
                 <li role="none"><a href="#" onclick="openLoginModal(event)" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;" role="menuitem">Client Login</a></li>
                 <li role="none"><a href="contact.html" class="btn btn-primary cta-btn-nav" role="menuitem">Get In Touch</a>
                 </li>
+                <li role="none" style="display: flex; align-items: center;">
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
             <button class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span></span>
@@ -77,14 +86,11 @@
     <div style="height: 100px;"></div>
 <!-- About Section -->
     <section class="section" style="text-align: center;">
-        <div class="container">
-            <div class="section-badge">About Us</div>
-            <h2>CNL Global Soft Tech (PVT) LTD</h2>
-            <p style="font-size: 1.1rem; max-width: 800px; margin: 1.5rem auto;">
-                Established as a leading technology solutions provider, we specialize in delivering comprehensive
-                software development,
-                cloud infrastructure, and digital transformation services. Our commitment to excellence ensures every
-                project exceeds expectations.
+        <div class="container" style="max-width: 1000px; margin: 0 auto; text-align: left;">
+            <div class="section-badge" style="margin: 0 auto 1rem auto; display: table;">About Us</div>
+            <h2 id="aboutUsTitle" style="text-align: center; margin-bottom: 2rem;">CNL Global Soft Tech (PVT) LTD</h2>
+            <p id="aboutUsDesc" style="font-size: 1.15rem; line-height: 1.8; color: #e2e8f0; margin: 1.5rem auto; text-align: justify;">
+                <i class="fas fa-spinner fa-spin"></i> Loading company information...
             </p>
         </div>
     </section>
@@ -101,9 +107,9 @@
                     </div>
                     <p>Innovating the future with technology. We provide premium IT solutions for businesses worldwide.</p>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=61573324737871" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/p/DWwhb5IGB-v/?igsh=MXVxdHM4Nnl2NmFjeQ==" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/94701505427" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="dynamic-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="dynamic-ig" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dynamic-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -115,6 +121,7 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin/login.html" style="color: var(--primary-cyan); font-weight: 500;"><i class="fas fa-user-shield"></i> Admin Portal</a></li>
                     </ul>
                 </div>
 
@@ -133,9 +140,9 @@
                 <div class="footer-col contact-info-col">
                     <h4>CONTACT US</h4>
                     <ul>
-                        <li><i class="far fa-envelope"></i> <span>cnlglobalsofttech@gmail.com</span></li>
-                        <li><i class="fas fa-phone-alt"></i> <span>+94 701 505 427</span></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Sri Lanka.</span></li>
+                        <li><i class="far fa-envelope"></i> <span class="dynamic-email">cnlglobalsofttech@gmail.com</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span class="dynamic-phone-primary">+94 701 505 427</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="dynamic-location">Sri Lanka.</span></li>
                     </ul>
                 </div>
             </div>
@@ -153,30 +160,11 @@
     </footer>
     
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/94701505427" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="#" class="floating-whatsapp dynamic-wa" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Chairman Profile Modal -->
-    <div id="chairmanModal" class="modal">
-        <div class="modal-content profile-modal">
-            <span class="close-modal" onclick="closeChairmanModal()">&times;</span>
-            <div class="modal-flex">
-                <div class="profile-img-container">
-                    <img src="assets/ceo_new.jpg.jpeg" alt="C.Lavapperiyan">
-                </div>
-                <div class="profile-details">
-                    <h2>C.Lavapperiyan</h2>
-                    <ul class="detail-list">
-                        <li><strong>Role</strong> <span>Founder & CEO</span></li>
-                        <li><strong>Company</strong> <span>CNL Global Soft Tech (PVT) LTD</span></li>
-                        <li><strong>Experience</strong> <span>Expert in Software Solutions</span></li>
-                        <li><strong>Vision</strong> <span>Driving digital transformation globally</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Customer Login Modal -->
     <div id="loginModal" class="modal">
@@ -263,20 +251,17 @@
                         Create Account <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
                     </button>
                 </form>
+
+                <!-- Staff Login Link -->
+                <div class="auth-footer" style="margin-top: 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <p style="font-size: 0.85rem; color: #a0aec0;">Are you a team member? <a href="admin/login.html" style="color: var(--primary-cyan); text-decoration: none; font-weight: 600;">Staff Login</a></p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        function openChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'block';
-        }
-
-        function closeChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'none';
-        }
-
         function openLoginModal(e) {
             e.preventDefault();
             document.getElementById('loginModal').style.display = 'block';
@@ -306,11 +291,7 @@
         }
 
         window.addEventListener('click', function (event) {
-            const chairmanModal = document.getElementById('chairmanModal');
             const loginModal = document.getElementById('loginModal');
-            if (event.target === chairmanModal) {
-                chairmanModal.style.display = 'none';
-            }
             if (event.target === loginModal) {
                 loginModal.style.display = 'none';
             }
@@ -409,6 +390,46 @@
             once: true,
             offset: 50
         });
+    </script>
+    <script>
+        // Fetch About Us content
+        const supabaseUrlAbout = 'https://caiambiptiuuxtdyacmx.supabase.co/rest/v1/about_content?select=*&id=eq.1';
+        const supabaseKeyAbout = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhaWFtYmlwdGl1dXh0ZHlhY214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NjAwMzYsImV4cCI6MjA5MTIzNjAzNn0.V60E1xXqvICAFS8RKP_2DFLWm2SVcZ9WcxmdE1QTDS4';
+
+        async function fetchAboutContent() {
+            try {
+                const response = await fetch(supabaseUrlAbout, {
+                    headers: {
+                        'apikey': supabaseKeyAbout,
+                        'Authorization': 'Bearer ' + supabaseKeyAbout
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.length > 0) {
+                        const aboutData = data[0];
+                        document.getElementById('aboutUsTitle').innerText = aboutData.title || 'CNL Global Soft Tech (PVT) LTD';
+                        
+                        // Handle line breaks by replacing \n with <br>
+                        let descHtml = aboutData.description || '';
+                        descHtml = descHtml.replace(/\n/g, '<br>');
+                        document.getElementById('aboutUsDesc').innerHTML = descHtml;
+                    } else {
+                        // Fallback text if table is empty
+                        document.getElementById('aboutUsTitle').innerText = 'CNL Global Soft Tech (PVT) LTD';
+                        document.getElementById('aboutUsDesc').innerText = 'Established as a leading technology solutions provider...';
+                    }
+                } else {
+                    document.getElementById('aboutUsDesc').innerText = 'Failed to load company information.';
+                }
+            } catch (err) {
+                console.error('Error fetching about content:', err);
+                document.getElementById('aboutUsDesc').innerText = 'Failed to load company information.';
+            }
+        }
+
+        fetchAboutContent();
     </script>
 </body>
 

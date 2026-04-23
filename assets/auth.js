@@ -79,7 +79,7 @@ function initAuthListeners() {
     }
 }
 
-// Sync user data to profiles table manually as a backup
+// Sync user data to customer_profiles table
 async function syncProfile(user) {
     if (!user) return;
     
@@ -88,21 +88,21 @@ async function syncProfile(user) {
     // Google provides 'name', email signup provides 'full_name'
     const full_name = user_metadata.full_name || user_metadata.name || email.split('@')[0];
     
-    console.log('Attempting to sync profile for:', email, 'ID:', id);
+    console.log('Attempting to sync customer profile for:', email);
     
-    const { error } = await _supabase
-        .from('profiles')
-        .upsert({
-            id: id,
-            email: email,
-            full_name: full_name,
-            updated_at: new Date().toISOString()
-        }, { onConflict: 'id' });
-    
-    if (error) {
-        console.error('Profile sync error details:', error);
-    } else {
-        console.log('Profile synced successfully for:', email);
+    try {
+        const { error } = await _supabase
+            .from('customer_profiles')
+            .upsert({
+                email: email,
+                full_name: full_name,
+                last_login: new Date().toISOString()
+            }, { onConflict: 'email' });
+        
+        if (error) throw error;
+        console.log('Customer profile synced successfully for:', email);
+    } catch (err) {
+        console.error('Customer profile sync error:', err.message);
     }
 }
 
@@ -110,6 +110,41 @@ async function syncProfile(user) {
 async function checkSession() {
     const { data: { session } } = await _supabase.auth.getSession();
     const navLinks = document.getElementById('navLinks');
+    const path = window.location.pathname;
+    const isRestrictedPage = path.includes('services.html') || path.includes('offers.html');
+
+    // Handle Redirection for Restricted Pages
+    if (!session && isRestrictedPage) {
+        console.log('Unauthorized access to restricted page. Redirecting...');
+        window.location.href = 'index.html?login_required=true';
+        return;
+    }
+
+    // Hide/Show Menu Items
+    const servicesLink = document.querySelector('a[href="services.html"]');
+    const offersLink = document.querySelector('a[href="offers.html"]');
+    const authOnlyCards = document.querySelectorAll('.auth-only-card');
+    const loggedOutOnly = document.querySelectorAll('.logged-out-only');
+    
+    if (!session) {
+        if (servicesLink) servicesLink.parentElement.style.display = 'none';
+        if (offersLink) offersLink.parentElement.style.display = 'none';
+        authOnlyCards.forEach(card => card.style.display = 'none');
+        loggedOutOnly.forEach(el => el.style.display = 'block');
+    } else {
+        if (servicesLink) servicesLink.parentElement.style.display = 'block';
+        if (offersLink) offersLink.parentElement.style.display = 'block';
+        authOnlyCards.forEach(card => card.style.display = 'block');
+        loggedOutOnly.forEach(el => el.style.display = 'none');
+    }
+
+    // Handle Automatic Login Modal if redirected
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('login_required') === 'true' && !session) {
+        setTimeout(() => {
+            if (typeof openLoginModal === 'function') openLoginModal(new Event('click'));
+        }, 500);
+    }
     
     // Find the Client Login link in the nav bar
     const loginLinks = document.querySelectorAll('a[onclick*="openLoginModal"]');

@@ -141,6 +141,40 @@ p { color: var(--text-muted); font-size: 1.05rem; }
     transition: var(--transition);
 }
 
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-cyan);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9.5px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9.5px) rotate(-45deg);
+}
+
 .nav-wrapper {
     display: flex;
     justify-content: space-between;
@@ -335,7 +369,135 @@ p { color: var(--text-muted); font-size: 1.05rem; }
 .service-card:hover .service-icon {
     background: var(--primary-teal);
     color: #fff;
-    transform: scale(1.1);
+    transform: scale(0.95);
+}
+
+/* ========================================
+   Dark/Light Mode Theme Toggle Overrides
+   ======================================== */
+:root.light-mode {
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --border-light: rgba(0, 0, 0, 0.1);
+    --border-glow: rgba(0, 156, 166, 0.2);
+    --shadow-neon: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.light-mode .navbar .logo {
+    color: var(--primary-blue);
+}
+
+.light-mode .btn-outline {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-main);
+}
+
+.light-mode .stat-number {
+    background: linear-gradient(to right, var(--primary-blue), var(--primary-teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.light-mode .service-card h3 {
+    color: var(--text-main);
+}
+
+.light-mode .service-number {
+    color: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .chairman-badge {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.light-mode .chairman-name {
+    color: var(--text-main);
+}
+
+.light-mode .contact-item {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.light-mode .footer-advanced {
+    background: #f1f5f9;
+}
+
+.light-mode .footer-col h4 {
+    color: var(--primary-blue);
+}
+
+.light-mode .footer-logo {
+    color: var(--primary-blue);
+}
+
+.light-mode .social-icons a {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--primary-blue);
+}
+
+.light-mode .auth-card {
+    background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.light-mode .auth-logo-text {
+    color: var(--primary-blue);
+}
+
+.light-mode .auth-tabs {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .auth-tab.active {
+    background: #fff;
+    color: var(--primary-blue);
+}
+
+.light-mode .auth-tab {
+    color: var(--text-muted);
+}
+
+.light-mode .input-wrapper input {
+    color: var(--text-main);
+}
+
+.light-mode .input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+
+/* Theme Toggle Button Style */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--primary-cyan);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.light-mode .theme-toggle-btn {
+    color: #f59e0b; /* Golden Sun color */
+}
+
+.light-mode .theme-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .service-card h3 {
@@ -993,7 +1155,23 @@ p { color: var(--text-muted); font-size: 1.05rem; }
 }
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
+    .menu-toggle { display: flex; }
+    .nav-links { 
+        display: none; 
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-surface);
+        flex-direction: column;
+        padding: 80px 2rem;
+        gap: 1.5rem;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+        border-left: 1px solid var(--border-light);
+        z-index: 1000;
+    }
+    .nav-links.active { display: flex; }
     .hero-stats { flex-direction: column; gap: 2rem; }
     .modal-content { grid-template-columns: 1fr; }
     .contact-section { padding: 2rem; }

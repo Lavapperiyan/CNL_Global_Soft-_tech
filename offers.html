@@ -37,6 +37,10 @@
 
     <!-- Supabase Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Theme Toggle Script -->
+    <script src="assets/theme.js"></script>
+    <script src="assets/contact-dynamic.js"></script>
 </head>
 
 <body>
@@ -65,6 +69,11 @@
                 <li role="none"><a href="#" onclick="openLoginModal(event)" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;" role="menuitem">Client Login</a></li>
                 <li role="none"><a href="contact.html" class="btn btn-primary cta-btn-nav" role="menuitem">Get In Touch</a>
                 </li>
+                <li role="none" style="display: flex; align-items: center;">
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
             <button class="menu-toggle" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span></span>
@@ -84,52 +93,12 @@
                 <p>Exclusive deals on premium IT solutions for a limited time</p>
             </div>
 
-            <div class="services-grid" style="margin-top: 3rem; text-align: left;">
-                <!-- Offer 1 -->
-                <article class="service-card" style="border-top: 3px solid var(--primary-teal); position: relative;" data-aos="fade-up">
-                    <div style="position: absolute; top: 20px; right: 20px; background: var(--primary-teal); color: #0a1929; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;">POPULAR</div>
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Startup Bundle</h3>
-                    <p style="margin-bottom: 1rem; color: #a0aec0; font-size: 0.95rem;">Perfect for new businesses looking to establish a strong digital presence instantly.</p>
-                    <ul style="list-style: none; padding: 0; color: #e2e8f0; margin-bottom: 2rem; line-height: 1.8;">
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> 20% Off Web Development</li>
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Free 1-Year Domain</li>
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Free 1-Year Hosting</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-primary" style="display: block; text-align: center;">Claim Offer</a>
-                </article>
-
-                <!-- Offer 2 -->
-                <article class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile App Combo</h3>
-                    <p style="margin-bottom: 1rem; color: #a0aec0; font-size: 0.95rem;">Launch your iOS and Android apps with full technical support to ensure smooth operation.</p>
-                    <ul style="list-style: none; padding: 0; color: #e2e8f0; margin-bottom: 2rem; line-height: 1.8;">
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Native App Development</li>
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> 3 Months Free Server Maint.</li>
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Free App Store Publishing</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-outline" style="display: block; text-align: center;">Claim Offer</a>
-                </article>
-
-                <!-- Offer 3 -->
-                <article class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-search-dollar"></i>
-                    </div>
-                    <h3>SEO Boost</h3>
-                    <p style="margin-bottom: 1rem; color: #a0aec0; font-size: 0.95rem;">Maximize your visibility with a professional SEO audit included in any marketing plan.</p>
-                    <ul style="list-style: none; padding: 0; color: #e2e8f0; margin-bottom: 2rem; line-height: 1.8;">
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Buy any IT Support Plan</li>
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Get Free Technical SEO Audit</li>
-                        <li><i class="fas fa-check" style="color: var(--accent-orange); margin-right: 8px;"></i> Competitor Analysis Included</li>
-                    </ul>
-                    <a href="contact.html" class="btn btn-outline" style="display: block; text-align: center;">Claim Offer</a>
-                </article>
+            <div class="services-grid" id="offersGrid" style="margin-top: 3rem; text-align: left;">
+                <!-- Loading indicator -->
+                <div style="text-align: center; width: 100%; grid-column: 1 / -1; color: var(--primary-cyan);">
+                    <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                    <p style="margin-top: 15px;">Loading latest offers...</p>
+                </div>
             </div>
         </div>
     </section>
@@ -146,9 +115,9 @@
                     </div>
                     <p>Innovating the future with technology. We provide premium IT solutions for businesses worldwide.</p>
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/profile.php?id=61573324737871" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/p/DWwhb5IGB-v/?igsh=MXVxdHM4Nnl2NmFjeQ==" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/94701505427" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="dynamic-fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="dynamic-ig" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="dynamic-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
 
@@ -160,6 +129,7 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin/login.html" style="color: var(--primary-cyan); font-weight: 500;"><i class="fas fa-user-shield"></i> Admin Portal</a></li>
                     </ul>
                 </div>
 
@@ -178,9 +148,9 @@
                 <div class="footer-col contact-info-col">
                     <h4>CONTACT US</h4>
                     <ul>
-                        <li><i class="far fa-envelope"></i> <span>cnlglobalsofttech@gmail.com</span></li>
-                        <li><i class="fas fa-phone-alt"></i> <span>+94 701 505 427</span></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Sri Lanka.</span></li>
+                        <li><i class="far fa-envelope"></i> <span class="dynamic-email">cnlglobalsofttech@gmail.com</span></li>
+                        <li><i class="fas fa-phone-alt"></i> <span class="dynamic-phone-primary">+94 701 505 427</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="dynamic-location">Sri Lanka.</span></li>
                     </ul>
                 </div>
             </div>
@@ -198,30 +168,11 @@
     </footer>
     
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/94701505427" class="floating-whatsapp" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="#" class="floating-whatsapp dynamic-wa" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Chairman Profile Modal -->
-    <div id="chairmanModal" class="modal">
-        <div class="modal-content profile-modal">
-            <span class="close-modal" onclick="closeChairmanModal()">&times;</span>
-            <div class="modal-flex">
-                <div class="profile-img-container">
-                    <img src="assets/ceo_new.jpg.jpeg" alt="C.Lavapperiyan">
-                </div>
-                <div class="profile-details">
-                    <h2>C.Lavapperiyan</h2>
-                    <ul class="detail-list">
-                        <li><strong>Role</strong> <span>Founder & CEO</span></li>
-                        <li><strong>Company</strong> <span>CNL Global Soft Tech (PVT) LTD</span></li>
-                        <li><strong>Experience</strong> <span>Expert in Software Solutions</span></li>
-                        <li><strong>Vision</strong> <span>Driving digital transformation globally</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Customer Login Modal -->
     <div id="loginModal" class="modal">
@@ -308,20 +259,17 @@
                         Create Account <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
                     </button>
                 </form>
+
+                <!-- Staff Login Link -->
+                <div class="auth-footer" style="margin-top: 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                    <p style="font-size: 0.85rem; color: #a0aec0;">Are you a team member? <a href="admin/login.html" style="color: var(--primary-cyan); text-decoration: none; font-weight: 600;">Staff Login</a></p>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script>
-        function openChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'block';
-        }
-
-        function closeChairmanModal() {
-            document.getElementById('chairmanModal').style.display = 'none';
-        }
-
         function openLoginModal(e) {
             e.preventDefault();
             document.getElementById('loginModal').style.display = 'block';
@@ -351,11 +299,7 @@
         }
 
         window.addEventListener('click', function (event) {
-            const chairmanModal = document.getElementById('chairmanModal');
             const loginModal = document.getElementById('loginModal');
-            if (event.target === chairmanModal) {
-                chairmanModal.style.display = 'none';
-            }
             if (event.target === loginModal) {
                 loginModal.style.display = 'none';
             }
@@ -448,12 +392,89 @@
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 50
-        });
+        try {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                offset: 50
+            });
+        } catch (e) {
+            console.error('AOS Init error:', e);
+        }
+    </script>
+    <script>
+        async function fetchOffers() {
+            const offersGrid = document.getElementById('offersGrid');
+            
+            // Supabase Init
+            const supabaseUrl = 'https://caiambiptiuuxtdyacmx.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNhaWFtYmlwdGl1dXh0ZHlhY214Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2NjAwMzYsImV4cCI6MjA5MTIzNjAzNn0.V60E1xXqvICAFS8RKP_2DFLWm2SVcZ9WcxmdE1QTDS4';
+            const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+            try {
+                const { data: offers, error } = await _supabase
+                    .from('offers')
+                    .select('*')
+                    .eq('is_active', true)
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                offersGrid.innerHTML = '';
+
+                if (!offers || offers.length === 0) {
+                    offersGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--text-dim); padding: 3rem;">No special offers available at the moment. Please check back later!</div>';
+                    return;
+                }
+
+                offers.forEach((offer, index) => {
+                    const delay = (index % 3) * 100;
+                    
+                    let featuresHtml = '';
+                    if (offer.features && offer.features.length > 0) {
+                        featuresHtml = '<ul style="list-style: none; padding: 0; color: #a0aec0; margin-bottom: 2rem; line-height: 1.8;">';
+                        offer.features.forEach(feature => {
+                            featuresHtml += `<li><i class="fas fa-check" style="color: var(--primary-cyan); margin-right: 8px;"></i> ${feature}</li>`;
+                        });
+                        featuresHtml += '</ul>';
+                    }
+
+                    const tagHtml = offer.tag ? `<div style="position: absolute; top: 20px; right: 20px; background: var(--primary-cyan); color: #0a1929; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase;">${offer.tag}</div>` : '';
+                    
+                    const borderStyle = offer.tag ? 'border-top: 3px solid var(--primary-cyan);' : 'border-top: 2px solid rgba(255,255,255,0.05);';
+                    const btnClass = offer.tag ? 'btn-primary' : 'btn-outline';
+
+                    const article = document.createElement('article');
+                    article.className = 'service-card';
+                    article.style.cssText = `position: relative; ${borderStyle} padding: 2.5rem; display: flex; flex-direction: column; height: 100%;`;
+                    article.setAttribute('data-aos', 'fade-up');
+                    article.setAttribute('data-aos-delay', delay);
+
+                    article.innerHTML = `
+                        ${tagHtml}
+                        <div class="service-icon" style="margin-bottom: 1.5rem;">
+                            <i class="fas ${offer.icon || 'fa-tags'}"></i>
+                        </div>
+                        <h3 style="font-size: 1.4rem; margin-bottom: 1rem;">${offer.title}</h3>
+                        <p style="margin-bottom: 1.5rem; color: #a0aec0; font-size: 0.95rem; line-height: 1.6;">${offer.description}</p>
+                        ${featuresHtml}
+                        <div style="margin-top: auto;">
+                            <a href="contact.html?offer=${encodeURIComponent(offer.title)}" class="btn ${btnClass}" style="display: block; text-align: center; width: 100%;">Claim Offer</a>
+                        </div>
+                    `;
+
+                    offersGrid.appendChild(article);
+                });
+
+            } catch (err) {
+                console.error('Error fetching offers:', err);
+                offersGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--accent-red); padding: 3rem;">Failed to load offers. Please try again later.</div>';
+            }
+        }
+
+        // Load offers immediately
+        document.addEventListener('DOMContentLoaded', fetchOffers);
     </script>
 </body>
 
