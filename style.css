@@ -25,10 +25,25 @@
     --bg-surface: #ffffff;
     --bg-card: rgba(255, 255, 255, 0.9);
     --text-main: #0f172a;
-    --text-muted: #475569;
+    --text-muted: #334155;
     --border-light: rgba(15, 23, 42, 0.08);
     --border-glow: rgba(0, 156, 166, 0.2);
     --shadow-neon: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode h1, 
+.light-mode h2, 
+.light-mode h3, 
+.light-mode h4,
+.light-mode p,
+.light-mode span:not(.btn-text),
+.light-mode li {
+    color: var(--text-main) !important;
+}
+
+.light-mode p, 
+.light-mode .text-muted {
+    color: var(--text-muted) !important;
 }
 
 .light-mode body {
