@@ -57,10 +57,15 @@ function initAuthListeners() {
             });
 
             if (error) {
-                alert('Signup Error: ' + error.message);
+                if (error.message.includes('already registered')) {
+                    alert('You already have an account! Please use the "Sign In" tab to log in.');
+                    toggleAuth('signin');
+                } else {
+                    alert('Signup Error: ' + error.message);
+                }
             } else {
-                alert('Verification email sent! Please check your inbox.');
-                closeLoginModal();
+                alert('Account created! Please check your email for a verification link (if required) and then sign in.');
+                toggleAuth('signin');
             }
             setLoading(submitBtn, false, 'Create Account');
         });
